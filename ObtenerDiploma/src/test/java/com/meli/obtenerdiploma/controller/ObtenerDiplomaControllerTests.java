@@ -15,4 +15,21 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class ObtenerDiplomaControllerTests {
+    @Mock
+    IObtenerDiplomaService service;
+
+    @InjectMocks
+    ObtenerDiplomaController controller;
+
+    @Test
+    public void obtenerDiploma(){
+        // Arrange
+        StudentDTO student=TestUtilsGenerator.getStudentWith3Subjects("Marco");
+
+        // Act
+        controller.analyzeScores(student.getId());
+
+        // Assert
+        verify(service, atLeastOnce()).analyzeScores(student.getId());
+    }
 }

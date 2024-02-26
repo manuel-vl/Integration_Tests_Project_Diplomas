@@ -13,4 +13,10 @@ import java.util.Properties;
 
 
 public class StudentDAOTests {
+    IStudentDAO studentDAO;
+
+    @BeforeEach @AfterEach
+    private void setUp(){
+        TestUtilsGenerator.emptyUsersFile();
+    }
 }

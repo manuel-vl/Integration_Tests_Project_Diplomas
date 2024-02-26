@@ -18,5 +18,72 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class StudentControllerTests {
+    @Mock
+    IStudentService service;
 
+    @InjectMocks
+    StudentController controller;
+
+    @Test
+    void registerStudent(){
+        // Arrange
+        StudentDTO student=TestUtilsGenerator.getStudentWith3Subjects("Marco");
+
+        // Act
+        controller.registerStudent(student);
+
+        // Assert
+        verify(service, atLeastOnce()).create(student);
+    }
+
+    @Test
+    void getStudent(){
+        // Arrange
+        StudentDTO student=TestUtilsGenerator.getStudentWith3Subjects("Marco");
+        when(service.read(student.getId())).thenReturn(student);
+
+        // Act
+        StudentDTO studentResponse=controller.getStudent(student.getId());
+
+        // Assert
+        verify(service, atLeastOnce()).read(student.getId());
+        assertEquals(student, studentResponse);
+    }
+
+    @Test
+    void modifyStudent(){
+        // Arrange
+        StudentDTO student=TestUtilsGenerator.getStudentWith3Subjects("Marco");
+
+        // Act
+        controller.modifyStudent(student);
+
+        // Assert
+        verify(service, atLeastOnce()).update(student);
+    }
+
+    @Test
+    void removeStudent(){
+        // Arrange
+        StudentDTO student=TestUtilsGenerator.getStudentWith3Subjects("Marco");
+
+        // Act
+        controller.removeStudent(student.getId());
+
+        // Assert
+        verify(service, atLeastOnce()).delete(student.getId());
+    }
+    @Test
+    void listStudents(){
+        // Arrange
+        Set<StudentDTO> students=TestUtilsGenerator.getStudentSet();
+        when(service.getAll()).thenReturn(students);
+
+        // Act
+        Set<StudentDTO> studentsResponse=controller.listStudents();
+
+        // Assert
+        verify(service, atLeastOnce()).getAll();
+        assertEquals(students, studentsResponse);
+    }
 }

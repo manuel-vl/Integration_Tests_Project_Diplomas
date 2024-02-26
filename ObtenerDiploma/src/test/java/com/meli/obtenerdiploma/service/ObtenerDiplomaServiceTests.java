@@ -34,12 +34,12 @@ public class ObtenerDiplomaServiceTests {
         when(studentDAO.findById(student.getId())).thenReturn(student);
 
         // Act
-        service.analyzeScores(student.getId());
+        StudentDTO studentResponse= service.analyzeScores(student.getId());
 
         // Assert
         // Verificamos que findById() sea llamado al menos una vez
         verify(studentDAO, atLeastOnce()).findById(student.getId());
-        assertEquals(6.0, student.getAverageScore());
+        assertEquals(6.0, studentResponse.getAverageScore());
     }
 
     @Test
@@ -49,11 +49,11 @@ public class ObtenerDiplomaServiceTests {
         when(studentDAO.findById(student.getId())).thenReturn(student);
 
         // Act
-        service.analyzeScores(student.getId());
+        StudentDTO studentResponse= service.analyzeScores(student.getId());
 
         // Assert
         verify(studentDAO, atLeastOnce()).findById(student.getId());
-        assertEquals("El alumno Marco ha obtenido un promedio de 9,00. Felicitaciones!", student.getMessage());
+        assertEquals("El alumno Marco ha obtenido un promedio de 9,00. Felicitaciones!", studentResponse.getMessage());
     }
 
     @Test
@@ -63,11 +63,11 @@ public class ObtenerDiplomaServiceTests {
         when(studentDAO.findById(student.getId())).thenReturn(student);
 
         // Act
-        service.analyzeScores(student.getId());
+        StudentDTO studentResponse= service.analyzeScores(student.getId());
 
         // Assert
         verify(studentDAO, atLeastOnce()).findById(student.getId());
-        assertEquals("El alumno Marco ha obtenido un promedio de 6,00. Puedes mejorar.", student.getMessage());
+        assertEquals("El alumno Marco ha obtenido un promedio de 6,00. Puedes mejorar.", studentResponse.getMessage());
     }
 
     @Test
@@ -77,11 +77,11 @@ public class ObtenerDiplomaServiceTests {
         when(studentDAO.findById(student.getId())).thenReturn(student);
 
         // Act
-        service.analyzeScores(student.getId());
+        StudentDTO studentResponse= service.analyzeScores(student.getId());
 
         // Assert
         verify(studentDAO, atLeastOnce()).findById(student.getId());
-        assertEquals("Marco", student.getStudentName());
+        assertEquals("Marco", studentResponse.getStudentName());
     }
 
     @Test
@@ -95,10 +95,10 @@ public class ObtenerDiplomaServiceTests {
         when(studentDAO.findById(student.getId())).thenReturn(student);
 
         // Act
-        service.analyzeScores(student.getId());
+        StudentDTO studentResponse= service.analyzeScores(student.getId());
 
         // Assert
         verify(studentDAO, atLeastOnce()).findById(student.getId());
-        assertTrue(CollectionUtils.isEqualCollection(initialList, student.getSubjects()));
+        assertTrue(CollectionUtils.isEqualCollection(initialList, studentResponse.getSubjects()));
     }
 }

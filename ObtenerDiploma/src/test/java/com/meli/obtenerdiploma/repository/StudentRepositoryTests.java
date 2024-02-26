@@ -13,4 +13,28 @@ import java.util.Properties;
 import java.util.Set;
 
 public class StudentRepositoryTests {
+    IStudentRepository studentRepository;
+    IStudentDAO studentDAO;
+
+    @BeforeEach
+    @AfterEach
+    private void setUp() {
+        TestUtilsGenerator.emptyUsersFile();
+
+        this.studentDAO = new StudentDAO();
+        this.studentRepository = new StudentRepository();
+    }
+
+    @Test
+    void findAllExistentStudents() {
+        // Arrange
+        Set<StudentDTO> students = TestUtilsGenerator.getStudentSet();
+        students.forEach(s -> studentDAO.save(s));
+
+        // Act
+        Set<StudentDTO> studentsResult=studentRepository.findAll();
+
+        // Assert
+        Assertions.assertTrue(CollectionUtils.isEqualCollection(students, studentsResult));
+    }
 }

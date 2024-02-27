@@ -57,7 +57,9 @@ public class StudentDAO implements IStudentDAO {
             ret  = true;
             this.saveData();
 
-        } catch (StudentNotFoundException e) {}
+        } catch (StudentNotFoundException e) {
+            throw new StudentNotFoundException(id);
+        }
 
         return ret;
     }

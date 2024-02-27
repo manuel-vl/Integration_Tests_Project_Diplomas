@@ -1,1 +1,1 @@
-[{"id":1,"studentName":"Manuel","message":"El alumno Manuel ha obtenido un promedio de 4,00. Puedes mejorar","averageScore":4.0,"subjects":[{"name":"Kahoot","score":1.0},{"name":"Musica","score":2.0},{"name":"POO","score":9.0}]}]
+[{"id":2,"studentName":"Manuel","message":null,"averageScore":null,"subjects":[{"name":"Matemática","score":8.0},{"name":"Lengua","score":6.0},{"name":"Física","score":4.0}]},{"id":3,"studentName":"ManuelV","message":null,"averageScore":null,"subjects":[{"name":"Matemática","score":8.0},{"name":"Lengua","score":6.0},{"name":"Física","score":4.0}]}]
